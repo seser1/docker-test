@@ -1,2 +1,18 @@
 # Get container's names and IPs
 docker ps -q | xargs docker inspect -f "{{.Name}} {{.NetworkSettings.IPAddress }}"
+
+# Build jenkins container
+docker build -t myjenk .
+
+# Run jenkins container (on linux)
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
+                -v $(which docker):/usr/bin/docker -p 8080:8080 myjenk
+
+# Run jenkins container (on windows)
+docker run -d -v //var/run/docker.sock:/var/run/docker.sock \
+	-v "/c/program files/docker toolbox/docker":/usr/bin/docker -p 8080:8080 myjenk
+
+# For centOS ?
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
+                -v /usr/lib/libdevmapper.so.1.02:/usr/lib/libdevmapper.so.1.02 \
+                -v $(which docker):/usr/bin/docker -p 8080:8080 myjenk
