@@ -1,7 +1,7 @@
 # Get container's names and IPs
 docker ps -q | xargs docker inspect -f "{{.Name}} {{.NetworkSettings.IPAddress }}"
 
-# Build jenkins container
+# Build jenkins image
 docker build -t myjenk .
 
 # Run jenkins container (on linux)
