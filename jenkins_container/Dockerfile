@@ -14,5 +14,8 @@ COPY plugins.txt /usr/share/jenkins/plugins.txt
 RUN nkf -wd --overwrite /usr/share/jenkins/plugins.txt
 # plugin.txt's line feed code should be 'LF' if not it whould be error in jenins:2.60.3
 
+RUN sudo apt install -y ruby
+RUN sudo apt install -y ruby-bundler
+
 USER jenkins
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
